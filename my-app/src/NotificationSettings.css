@@ -1,0 +1,359 @@
+/* Notification Settings Page - Matching Settings Page Style */
+.notification-settings-page {
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 100px;
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+/* Header */
+.notification-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: -20px -20px 24px -20px;
+  padding: 24px 20px;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
+}
+
+.notification-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.notification-header .back-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.notification-header .back-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-4px) scale(1.05);
+}
+
+.notification-header .back-btn:active {
+  transform: scale(0.95);
+}
+
+/* Notification List */
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Notification Item */
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.notification-item:first-child {
+  border-radius: 20px 20px 0 0;
+}
+
+.notification-item:last-child {
+  border-radius: 0 0 20px 20px;
+  border-bottom: none;
+}
+
+.notification-item:first-child:last-child {
+  border-radius: 20px;
+}
+
+.notification-item:hover {
+  background: #f8f9ff;
+}
+
+.notification-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+/* Toggle Button - Matching Settings Style */
+.notification-list .toggle-btn {
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  background: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.notification-list .toggle-btn.active {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.notification-list .toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.notification-list .toggle-btn.active .toggle-slider {
+  left: 27px;
+}
+
+/* Save Button Container */
+.save-button-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background: linear-gradient(to top, #ffffff 80%, transparent);
+}
+
+.notification-settings-page.dark-mode .save-button-container {
+  background: linear-gradient(to top, #151528 80%, transparent);
+}
+
+/* Save Settings Button */
+.save-settings-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.save-settings-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.save-settings-btn:active {
+  transform: translateY(0);
+}
+
+/* Popup - Matching Settings Style */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(30, 30, 63, 0.95);
+  color: white;
+  padding: 20px 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  animation: popupSlide 0.3s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.popup .checkmark {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.popup p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@keyframes popupSlide {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Dark Mode */
+.app.dark-mode .notification-settings-page {
+  background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+}
+
+.app.dark-mode .notification-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #252542 100%);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+}
+
+.app.dark-mode .notification-header .back-btn {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .notification-header .back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.app.dark-mode .notification-item {
+  background: #1e1e3f;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .notification-item:hover {
+  background: #252550;
+}
+
+.app.dark-mode .notification-info h3 {
+  color: #ffffff;
+}
+
+.app.dark-mode .save-button-container {
+  background: linear-gradient(to top, #1a1a2e 80%, transparent);
+}
+
+/* Responsive Design - Matching Settings Page */
+@media (min-width: 768px) {
+  .notification-settings-page {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 120px;
+  }
+
+  .notification-header {
+    margin: -30px -30px 28px -30px;
+    padding: 28px 30px;
+    border-radius: 0 0 36px 36px;
+  }
+
+  .notification-header h1 {
+    font-size: 24px;
+  }
+
+  .notification-item {
+    padding: 24px 28px;
+  }
+
+  .notification-info h3 {
+    font-size: 17px;
+  }
+
+  .notification-list .toggle-btn {
+    width: 56px;
+    height: 30px;
+    border-radius: 15px;
+  }
+
+  .notification-list .toggle-slider {
+    width: 24px;
+    height: 24px;
+    top: 3px;
+    left: 3px;
+  }
+
+  .notification-list .toggle-btn.active .toggle-slider {
+    left: 29px;
+  }
+
+  .save-settings-btn {
+    padding: 18px;
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .notification-settings-page {
+    max-width: 500px;
+    padding: 40px;
+    padding-bottom: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-settings-page {
+    padding: 16px;
+    padding-bottom: 80px;
+  }
+
+  .notification-header {
+    padding: 20px 16px;
+    margin: -16px -16px 20px -16px;
+  }
+
+  .notification-header h1 {
+    font-size: 20px;
+  }
+
+  .notification-item {
+    padding: 16px 20px;
+  }
+
+  .notification-info h3 {
+    font-size: 14px;
+  }
+
+  .notification-list .toggle-btn {
+    width: 48px;
+    height: 26px;
+    border-radius: 13px;
+  }
+
+  .notification-list .toggle-slider {
+    width: 20px;
+    height: 20px;
+    top: 3px;
+    left: 3px;
+  }
+
+  .notification-list .toggle-btn.active .toggle-slider {
+    left: 25px;
+  }
+
+  .save-button-container {
+    max-width: calc(100% - 32px);
+    padding: 15px;
+  }
+
+  .save-settings-btn {
+    padding: 14px;
+    font-size: 15px;
+  }
+}

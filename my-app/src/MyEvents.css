@@ -1,0 +1,428 @@
+/* My Events Page */
+.my-events-page {
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 100px;
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+/* Header */
+.my-events-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: -20px -20px 24px -20px;
+  padding: 24px 20px;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
+}
+
+.my-events-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-4px) scale(1.05);
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.filter-buttons::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  padding: 12px 20px;
+  border: 2px solid #e0e5ff;
+  background: white;
+  color: #667eea;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.35);
+}
+
+.filter-btn:hover:not(.active) {
+  background: #f0f4ff;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+/* Events List */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Event Card */
+.event-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 20px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.event-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.event-card:active {
+  transform: scale(0.98);
+}
+
+.event-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.event-card:hover .event-image {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.event-image span {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Uploaded image styles */
+.event-image.uploaded {
+  background: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 0;
+}
+
+.event-image.uploaded img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.event-card:hover .event-image.uploaded {
+  transform: scale(1.05);
+}
+
+.event-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-info h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: white;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.event-date,
+.event-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.event-date svg,
+.event-time svg {
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.status-badge.approved {
+  background: rgba(255, 255, 255, 0.95);
+  color: #10b981;
+}
+
+.status-badge.pending {
+  background: rgba(255, 255, 255, 0.95);
+  color: #f59e0b;
+}
+
+.status-badge.rejected {
+  background: rgba(255, 255, 255, 0.95);
+  color: #ef4444;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.empty-state svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Dark Mode */
+.app.dark-mode .my-events-page {
+  background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+}
+
+.app.dark-mode .my-events-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #252542 100%);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+}
+
+.app.dark-mode .back-btn {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.app.dark-mode .filter-btn {
+  background: #1e1e3f;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.app.dark-mode .filter-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.app.dark-mode .filter-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .event-card {
+  background: linear-gradient(135deg, #252542 0%, #2d2d5a 100%);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.app.dark-mode .event-card:hover {
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+}
+
+.app.dark-mode .event-info h3 {
+  color: #ffffff;
+}
+
+.app.dark-mode .event-date,
+.app.dark-mode .event-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.app.dark-mode .empty-state {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .my-events-page {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 120px;
+  }
+
+  .my-events-header {
+    margin: -30px -30px 28px -30px;
+    padding: 28px 30px;
+    border-radius: 0 0 36px 36px;
+  }
+
+  .my-events-header h1 {
+    font-size: 24px;
+  }
+
+  .back-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+
+  .filter-buttons {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .filter-btn {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+
+  .event-card {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .event-image {
+    width: 68px;
+    height: 68px;
+    font-size: 22px;
+  }
+
+  .event-info h3 {
+    font-size: 19px;
+  }
+
+  .event-date,
+  .event-time {
+    font-size: 14px;
+  }
+
+  .status-badge {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .my-events-page {
+    max-width: 500px;
+    padding: 40px;
+    padding-bottom: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-events-page {
+    padding: 16px;
+    padding-bottom: 80px;
+  }
+
+  .my-events-header {
+    padding: 20px 16px;
+    margin: -16px -16px 20px -16px;
+  }
+
+  .my-events-header h1 {
+    font-size: 20px;
+  }
+
+  .filter-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .event-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .event-image {
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .event-info h3 {
+    font-size: 15px;
+  }
+
+  .event-date,
+  .event-time {
+    font-size: 12px;
+  }
+
+  .status-badge {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+}

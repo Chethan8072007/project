@@ -1,0 +1,412 @@
+/* App.css - Main Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.app {
+  min-height: 100vh;
+  transition: all 0.4s ease;
+}
+
+/* ==================== PAGE CONTAINER ==================== */
+/* Consistent responsive container for all pages */
+.page-container {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 100px;
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+/* Desktop - Max width for consistent page size */
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 120px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .page-container {
+    max-width: 500px;
+    padding: 40px;
+    padding-bottom: 140px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 16px;
+    padding-bottom: 80px;
+  }
+}
+
+/* ==================== LIGHT MODE ==================== */
+.app {
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+  color: #1a1a2e;
+}
+
+/* ==================== DARK MODE ==================== */
+.app.dark-mode {
+  background: linear-gradient(180deg, #0d0d1a 0%, #151528 50%, #1a1a2e 100%);
+  color: #ffffff;
+}
+
+.app.dark-mode .page-container {
+  background: linear-gradient(180deg, #0d0d1a 0%, #151528 100%);
+}
+
+/* ==================== DARK MODE STYLES ==================== */
+.app.dark-mode .card,
+.app.dark-mode .event-card,
+.app.dark-mode .notification-item,
+.app.dark-mode .stats-card,
+.app.dark-mode .quick-action-card,
+.app.dark-mode .form-container,
+.app.dark-mode .settings-list,
+.app.dark-mode .edit-form,
+.app.dark-mode .section,
+.app.dark-mode .registration-item,
+.app.dark-mode .profile-content {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .event-card:hover {
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.25);
+  transform: translateY(-4px);
+}
+
+/* Dark Mode Headers */
+.app.dark-mode .page-header,
+.app.dark-mode .dashboard-header {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Dark Mode Text */
+.app.dark-mode h1,
+.app.dark-mode h2,
+.app.dark-mode h3,
+.app.dark-mode h4 {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark-mode p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.app.dark-mode .event-info h3 {
+  color: #ffffff;
+}
+
+.app.dark-mode .event-info p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Dark Mode Stats Cards */
+.app.dark-mode .stats-card {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .stats-card:hover {
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.25);
+  transform: translateY(-4px);
+}
+
+.app.dark-mode .stats-card .stats-value {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark-mode .stats-card .stats-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Dark Mode Quick Actions */
+.app.dark-mode .quick-action-card {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .quick-action-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.25);
+}
+
+.app.dark-mode .quick-action-card p {
+  color: #ffffff;
+}
+
+/* Dark Mode Section Headers */
+.app.dark-mode .section-header h2 {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode Bottom Navigation */
+.app.dark-mode .bottom-nav {
+  background: linear-gradient(180deg, #1e1e3f 0%, #151528 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.app.dark-mode .nav-item {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.app.dark-mode .nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .nav-item.active {
+  color: #667eea;
+}
+
+/* Dark Mode Buttons */
+.app.dark-mode .btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode Form Elements */
+.app.dark-mode .form-group input,
+.app.dark-mode .form-group textarea,
+.app.dark-mode .form-group select {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.app.dark-mode .form-group input:focus,
+.app.dark-mode .form-group textarea:focus,
+.app.dark-mode .form-group select:focus {
+  border-color: #667eea;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.app.dark-mode .form-group label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Dark Mode Tab Buttons */
+.app.dark-mode .tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .tab-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Dark Mode Registration Items */
+.app.dark-mode .registration-item {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .registration-info h3 {
+  color: #ffffff;
+}
+
+.app.dark-mode .registration-info p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.app.dark-mode .registration-actions {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Dark Mode Profile */
+.app.dark-mode .profile-info h2 {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark-mode .profile-info .email,
+.app.dark-mode .profile-info .phone,
+.app.dark-mode .profile-info .role {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Dark Mode Settings */
+.app.dark-mode .settings-item {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .settings-info h3 {
+  color: #ffffff;
+}
+
+.app.dark-mode .settings-info p {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.app.dark-mode .settings-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Notifications */
+.app.dark-mode .notification-item {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app.dark-mode .notification-item:hover {
+  background: linear-gradient(135deg, #252550 0%, #2a2a5a 100%);
+}
+
+.app.dark-mode .notification-info .notification-title {
+  color: #ffffff;
+}
+
+.app.dark-mode .notification-info .notification-desc {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.app.dark-mode .notification-time {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==================== PRESERVE GRADIENTS ==================== */
+.app.dark-mode .btn-primary,
+.app.dark-mode .save-btn,
+.app.dark-mode .save-settings-btn,
+.app.dark-mode .edit-profile-btn,
+.app.dark-mode .create-event-btn,
+.app.dark-mode .toggle-btn.active,
+.app.dark-mode .tab-btn.active,
+.app.dark-mode .avatar,
+.app.dark-mode .dashboard-header,
+.app.dark-mode .quick-action-card .action-icon-wrapper,
+.app.dark-mode .notification-icon-wrapper,
+.app.dark-mode .event-card,
+.app.dark-mode .stats-card.gradient-blue,
+.app.dark-mode .stats-card.gradient-purple,
+.app.dark-mode .stats-card.gradient-orange,
+.app.dark-mode .nav-icon-wrapper {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4) !important;
+}
+
+.app.dark-mode .notification-icon-wrapper.success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4) !important;
+}
+
+.app.dark-mode .event-image.gradient-blue {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+  box-shadow: 0 4px 16px rgba(79, 172, 254, 0.4) !important;
+}
+
+/* Dark Mode Status Badges */
+.app.dark-mode .status-approved {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.app.dark-mode .status-pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.app.dark-mode .status-rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+/* Dark Mode Popup */
+.app.dark-mode .popup {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.app.dark-mode .popup p {
+  color: #ffffff;
+}
+
+/* Dark Mode Toggle Button */
+.app.dark-mode .toggle-btn {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
+
+.app.dark-mode .toggle-btn .toggle-slider {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark-mode .toggle-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* Dark Mode Back Button */
+.app.dark-mode .back-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode View All Button */
+.app.dark-mode .view-all-btn {
+  color: #667eea;
+}
+
+.app.dark-mode .view-all-btn:hover {
+  color: #8b9cf7;
+}
+
+/* Dark Mode Notification Badge */
+.app.dark-mode .notification-badge {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+/* Dark Mode Checkmark in Popup */
+.app.dark-mode .checkmark {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4) !important;
+}
