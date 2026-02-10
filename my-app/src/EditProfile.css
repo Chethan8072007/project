@@ -170,28 +170,57 @@
   transform: scale(0.98);
 }
 
+/* Popup Backdrop */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Popup - Matching Settings Popup Style */
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(30, 30, 63, 0.95);
-  color: white;
-  padding: 20px 32px;
-  border-radius: 16px;
+  background: white;
+  padding: 28px 36px;
+  border-radius: 24px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   z-index: 1000;
-  animation: popupSlide 0.3s ease;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: popupSlideIn 0.4s ease;
 }
 
-@keyframes popupSlide {
+.popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+@keyframes popupSlideIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.8);
   }
   to {
     opacity: 1;
@@ -200,21 +229,28 @@
 }
 
 .popup .checkmark {
-  width: 28px;
-  height: 28px;
+  width: 64px;
+  height: 64px;
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
+  color: white;
+  box-shadow: 0 8px 24px rgba(56, 239, 125, 0.4);
+}
+
+.popup .checkmark svg {
+  width: 32px;
+  height: 32px;
 }
 
 .popup p {
   margin: 0;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a2e;
+  text-align: center;
 }
 
 /* Dark Mode */
@@ -256,45 +292,51 @@
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
 }
 
-/* Responsive Design */
+/* Responsive Design - Full viewport on desktop */
 @media (min-width: 768px) {
   .edit-profile-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
   }
 
   .edit-profile-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    margin: -40px -40px 40px -40px;
+    padding: 40px;
+    border-radius: 0;
+    max-width: 100%;
   }
 
   .edit-profile-header h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .avatar-large {
-    width: 140px;
-    height: 140px;
-    font-size: 48px;
+    width: 160px;
+    height: 160px;
+    font-size: 56px;
+    border-radius: 40px;
   }
 
   .camera-btn {
-    width: 50px;
-    height: 50px;
-    right: calc(50% - 70px);
+    width: 56px;
+    height: 56px;
+    right: calc(50% - 80px);
   }
 
   .camera-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
   }
 
   .edit-form {
-    padding: 32px;
+    padding: 36px;
     border-radius: 24px;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .form-group {
@@ -302,7 +344,7 @@
   }
 
   .form-group label {
-    font-size: 15px;
+    font-size: 16px;
     margin-bottom: 12px;
   }
 
@@ -314,19 +356,64 @@
   .save-btn {
     padding: 18px;
     font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .popup {
+    padding: 36px 48px;
+  }
+
+  .popup p {
+    font-size: 18px;
   }
 }
 
 @media (min-width: 1200px) {
   .edit-profile-page {
-    max-width: 500px;
-    padding: 40px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 60px;
     padding-bottom: 140px;
+  }
+
+  .edit-profile-header {
+    margin: -60px -60px 50px -60px;
+    padding: 50px;
+    max-width: 100%;
+  }
+
+  .avatar-large {
+    width: 180px;
+    height: 180px;
+    font-size: 64px;
+    border-radius: 45px;
+  }
+
+  .camera-btn {
+    width: 64px;
+    height: 64px;
+    right: calc(50% - 90px);
+  }
+
+  .edit-form {
+    max-width: 700px;
+    padding: 44px;
+  }
+
+  .save-btn {
+    max-width: 700px;
   }
 }
 
+/* Mobile Small - Fixed width */
 @media (max-width: 480px) {
   .edit-profile-page {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
     padding: 16px;
     padding-bottom: 80px;
   }
@@ -334,6 +421,7 @@
   .edit-profile-header {
     padding: 20px 16px;
     margin: -16px -16px 20px -16px;
+    border-radius: 0 0 28px 28px;
   }
 
   .edit-profile-header h1 {

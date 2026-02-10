@@ -168,45 +168,82 @@
   transform: translateY(0);
 }
 
+/* Popup Backdrop */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Popup - Matching Settings Style */
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(30, 30, 63, 0.95);
-  color: white;
-  padding: 20px 32px;
-  border-radius: 16px;
+  background: white;
+  padding: 28px 36px;
+  border-radius: 24px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   z-index: 1000;
-  animation: popupSlide 0.3s ease;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: popupSlideIn 0.4s ease;
+}
+
+.popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
 }
 
 .popup .checkmark {
-  width: 28px;
-  height: 28px;
+  width: 64px;
+  height: 64px;
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(56, 239, 125, 0.4);
+}
+
+.popup .checkmark svg {
+  width: 32px;
+  height: 32px;
 }
 
 .popup p {
   margin: 0;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a2e;
+  text-align: center;
 }
 
-@keyframes popupSlide {
+@keyframes popupSlideIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.8);
   }
   to {
     opacity: 1;
@@ -249,23 +286,33 @@
   background: linear-gradient(to top, #1a1a2e 80%, transparent);
 }
 
-/* Responsive Design - Matching Settings Page */
+/* Responsive Design - Full viewport on desktop */
 @media (min-width: 768px) {
   .notification-settings-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
   }
 
   .notification-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    margin: -40px -40px 40px -40px;
+    padding: 40px;
+    border-radius: 0;
+    max-width: 100%;
   }
 
   .notification-header h1 {
-    font-size: 24px;
+    font-size: 28px;
+  }
+
+  .notification-list {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
   }
 
   .notification-item {
@@ -273,7 +320,7 @@
   }
 
   .notification-info h3 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .notification-list .toggle-btn {
@@ -296,19 +343,53 @@
   .save-settings-btn {
     padding: 18px;
     font-size: 17px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .popup {
+    padding: 36px 48px;
+  }
+
+  .popup p {
+    font-size: 18px;
   }
 }
 
 @media (min-width: 1200px) {
   .notification-settings-page {
-    max-width: 500px;
-    padding: 40px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 60px;
     padding-bottom: 140px;
+  }
+
+  .notification-header {
+    margin: -60px -60px 50px -60px;
+    padding: 50px;
+    max-width: 100%;
+  }
+
+  .notification-list {
+    max-width: 900px;
+  }
+
+  .notification-item {
+    padding: 28px 32px;
+  }
+
+  .notification-info h3 {
+    font-size: 20px;
   }
 }
 
+/* Mobile Small - Fixed width */
 @media (max-width: 480px) {
   .notification-settings-page {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
     padding: 16px;
     padding-bottom: 80px;
   }
@@ -316,6 +397,7 @@
   .notification-header {
     padding: 20px 16px;
     margin: -16px -16px 20px -16px;
+    border-radius: 0 0 28px 28px;
   }
 
   .notification-header h1 {
@@ -347,13 +429,39 @@
     left: 25px;
   }
 
-  .save-button-container {
-    max-width: calc(100% - 32px);
-    padding: 15px;
-  }
-
   .save-settings-btn {
     padding: 14px;
     font-size: 15px;
   }
+
+  .popup {
+    padding: 16px 24px;
+  }
+
+  .popup p {
+    font-size: 14px;
+  }
+}
+
+/* ==================== DARK MODE POPUP ==================== */
+
+.app.dark-mode .popup {
+  background: #1e1e3f;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.app.dark-mode .popup::before {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.app.dark-mode .popup .checkmark {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.app.dark-mode .popup p {
+  color: #ffffff;
+}
+
+.app.dark-mode .popup-backdrop {
+  background: rgba(0, 0, 0, 0.7);
 }

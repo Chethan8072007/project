@@ -258,6 +258,24 @@
   transform: scale(0.98);
 }
 
+/* Popup Backdrop */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Popup */
 .popup {
   position: fixed;
@@ -418,28 +436,32 @@
   color: #ffffff;
 }
 
-/* Responsive Design */
+/* Responsive Design - Full viewport on desktop */
 @media (min-width: 768px) {
   .create-event-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
   }
 
   .create-event-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    margin: -40px -40px 40px -40px;
+    padding: 40px;
+    border-radius: 0;
   }
 
   .create-event-header h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .create-event-form {
-    padding: 32px;
+    padding: 36px;
     border-radius: 24px;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   .form-group {
@@ -447,7 +469,7 @@
   }
 
   .form-group label {
-    font-size: 15px;
+    font-size: 16px;
     margin-bottom: 12px;
   }
 
@@ -465,6 +487,8 @@
   .create-event-btn {
     padding: 18px 28px;
     font-size: 17px;
+    max-width: 700px;
+    margin: 8px auto 0;
   }
 
   .popup {
@@ -478,14 +502,34 @@
 
 @media (min-width: 1200px) {
   .create-event-page {
-    max-width: 500px;
-    padding: 40px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 60px;
     padding-bottom: 140px;
+  }
+
+  .create-event-header {
+    margin: -60px -60px 50px -60px;
+    padding: 50px;
+  }
+
+  .create-event-form {
+    max-width: 800px;
+    padding: 40px;
+  }
+
+  .create-event-btn {
+    max-width: 800px;
   }
 }
 
+/* Mobile Small - Fixed width */
 @media (max-width: 480px) {
   .create-event-page {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
     padding: 16px;
     padding-bottom: 80px;
   }
@@ -493,6 +537,7 @@
   .create-event-header {
     padding: 20px 16px;
     margin: -16px -16px 20px -16px;
+    border-radius: 0 0 28px 28px;
   }
 
   .create-event-header h1 {

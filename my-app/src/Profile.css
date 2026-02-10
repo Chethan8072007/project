@@ -287,34 +287,40 @@
   background: rgba(102, 126, 234, 0.1);
 }
 
-/* Responsive Design */
+/* Responsive Design - Full viewport on desktop */
 @media (min-width: 768px) {
   .profile-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
   }
 
   .profile-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    margin: -40px -40px 40px -40px;
+    padding: 40px;
+    border-radius: 0;
+    max-width: 100%;
   }
 
   .profile-header h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .avatar-large {
-    width: 140px;
-    height: 140px;
-    font-size: 48px;
+    width: 160px;
+    height: 160px;
+    font-size: 56px;
+    border-radius: 40px;
   }
 
   .info-card {
     padding: 32px;
     border-radius: 24px;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .info-row {
@@ -331,19 +337,50 @@
   .logout-btn {
     padding: 18px 32px;
     font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto 12px;
   }
 }
 
 @media (min-width: 1200px) {
   .profile-page {
-    max-width: 500px;
-    padding: 40px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 60px;
     padding-bottom: 140px;
+  }
+
+  .profile-header {
+    margin: -60px -60px 50px -60px;
+    padding: 50px;
+    max-width: 100%;
+  }
+
+  .avatar-large {
+    width: 180px;
+    height: 180px;
+    font-size: 64px;
+    border-radius: 45px;
+  }
+
+  .info-card {
+    max-width: 700px;
+  }
+
+  .settings-btn,
+  .change-password-btn,
+  .logout-btn {
+    max-width: 700px;
   }
 }
 
+/* Mobile Small - Fixed width */
 @media (max-width: 480px) {
   .profile-page {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
     padding: 16px;
     padding-bottom: 80px;
   }
@@ -351,6 +388,7 @@
   .profile-header {
     padding: 20px 16px;
     margin: -16px -16px 20px -16px;
+    border-radius: 0 0 28px 28px;
   }
 
   .profile-header h1 {

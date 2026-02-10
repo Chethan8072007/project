@@ -113,6 +113,13 @@
   margin: 0;
 }
 
+.notifications-page .notification-count {
+  font-size: 13px;
+  color: #667eea;
+  margin: 4px 0 0 0;
+  font-weight: 500;
+}
+
 .notifications-page .notification-arrow {
   font-size: 18px;
   color: #999;
@@ -147,33 +154,49 @@
   color: #ffffff;
 }
 
+.app.dark-mode .notifications-page .notification-count {
+  color: #667eea;
+}
+
 .app.dark-mode .notifications-page .notification-arrow {
   color: rgba(255, 255, 255, 0.5);
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 
-/* Desktop - Max width 500px, centered */
+/* Desktop - Full viewport width and height */
 @media (min-width: 768px) {
   .notifications-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    position: relative;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
   }
 
   .notifications-page .page-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 40px;
+    border-radius: 0;
+    max-width: 100%;
   }
 
   .notifications-page .page-header h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .notifications-page .notifications-list {
     padding: 0;
+    margin-top: 100px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .notifications-page .notification-item {
@@ -181,22 +204,43 @@
   }
 
   .notifications-page .notification-info .notification-title {
-    font-size: 17px;
+    font-size: 18px;
   }
 }
 
 /* Large Desktop */
 @media (min-width: 1200px) {
   .notifications-page {
-    max-width: 500px;
-    padding: 40px;
+    position: relative;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 60px;
     padding-bottom: 140px;
+  }
+
+  .notifications-page .page-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 50px;
+    max-width: 100%;
+  }
+
+  .notifications-page .notifications-list {
+    max-width: 900px;
   }
 }
 
-/* Mobile Small */
+/* Mobile Small - Fixed width */
 @media (max-width: 480px) {
   .notifications-page {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
     padding: 16px;
     padding-bottom: 70px;
   }
@@ -204,29 +248,35 @@
   .notifications-page .page-header {
     padding: 20px 16px;
     margin: -16px -16px 20px -16px;
+    border-radius: 0 0 28px 28px;
   }
 
   .notifications-page .page-header h1 {
     font-size: 20px;
   }
+}
 
-  .notifications-page .back-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
+/* ==================== DARK MODE POPUP ==================== */
 
-  .notifications-page .notification-item {
-    padding: 14px;
-  }
+.app.dark-mode .popup {
+  background: #1e1e3f;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
 
-  .notifications-page .notification-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
-  }
+.app.dark-mode .popup::before {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
 
-  .notifications-page .notification-info .notification-title {
-    font-size: 14px;
-  }
+.app.dark-mode .popup .checkmark {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.app.dark-mode .popup p {
+  color: #ffffff;
+}
+
+/* ==================== DARK MODE NOTIFICATIONS ==================== */
+
+.app.dark-mode .popup-backdrop {
+  background: rgba(0, 0, 0, 0.7);
 }

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { DarkModeContext } from "./App";
 import "./Notifications.css";
 
-function Notifications({ onBack, onNavigateToNewRegistration, onNavigateToRegisteredMembers, onNavigateToRejectedRegistrations }) {
+function Notifications({ onBack, onNavigateToNewRegistration, onNavigateToRegisteredMembers, onNavigateToRejectedRegistrations, newRegistrationsCount, registeredMembersCount, rejectedRegistrationsCount }) {
   const { isDarkMode } = useContext(DarkModeContext);
 
   return (
@@ -21,6 +21,7 @@ function Notifications({ onBack, onNavigateToNewRegistration, onNavigateToRegist
           <span className="notification-icon">👥</span>
           <div className="notification-info">
             <p className="notification-title">New Registration</p>
+            <p className="notification-count">{newRegistrationsCount} pending</p>
           </div>
           <span className="notification-arrow">→</span>
         </div>
@@ -29,6 +30,7 @@ function Notifications({ onBack, onNavigateToNewRegistration, onNavigateToRegist
           <span className="notification-icon">📋</span>
           <div className="notification-info">
             <p className="notification-title">Registered Members</p>
+            <p className="notification-count">{registeredMembersCount} members</p>
           </div>
           <span className="notification-arrow">→</span>
         </div>
@@ -37,6 +39,7 @@ function Notifications({ onBack, onNavigateToNewRegistration, onNavigateToRegist
           <span className="notification-icon reject">❌</span>
           <div className="notification-info">
             <p className="notification-title">Registration Rejected</p>
+            <p className="notification-count">{rejectedRegistrationsCount} rejected</p>
           </div>
           <span className="notification-arrow">→</span>
         </div>

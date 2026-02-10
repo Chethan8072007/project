@@ -1,26 +1,28 @@
-/* Registered Members Page - Dashboard Style */
+/* Registered Members Page - View Registrations Style */
 .registered-members-page {
   min-height: 100vh;
-  background: #f0f2f5;
-  padding-bottom: 80px;
+  padding: 20px;
+  padding-bottom: 100px;
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
 }
 
 /* Header */
 .registered-members-page .page-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 24px 20px;
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   margin: -20px -20px 24px -20px;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  padding: 24px 20px;
   border-radius: 0 0 28px 28px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
 }
 
 .registered-members-page .page-header h1 {
   font-size: 22px;
   font-weight: 700;
+  color: white;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -50,22 +52,53 @@
   transform: scale(0.95);
 }
 
-/* Members Count */
-.registered-members-page .members-count {
-  padding: 0 16px;
-  margin-bottom: 16px;
+/* Stats Card */
+.registered-members-page .stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
-.registered-members-page .members-count p {
+.registered-members-page .stats-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.registered-members-page .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.registered-members-page .stat-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.registered-members-page .stat-label {
   font-size: 14px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
-  margin: 0;
 }
 
 /* Members List Container */
 .registered-members-page .members-list {
-  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 /* Member Item */
@@ -73,21 +106,17 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 16px;
+  padding: 18px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  margin-bottom: 12px;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .registered-members-page .member-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
-}
-
-.registered-members-page .member-item:active {
-  transform: scale(0.98);
+  transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
 }
 
 .registered-members-page .member-avatar {
@@ -95,19 +124,14 @@
   height: 52px;
   border-radius: 14px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
+  font-weight: 700;
+  font-size: 18px;
   flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.registered-members-page .member-item:hover .member-avatar {
-  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .registered-members-page .member-info {
@@ -116,16 +140,19 @@
 }
 
 .registered-members-page .member-info h3 {
+  margin: 0 0 4px 0;
   font-size: 16px;
-  font-weight: 600;
   color: #1a1a2e;
-  margin: 0 0 4px;
+  font-weight: 600;
 }
 
 .registered-members-page .member-info p {
-  font-size: 14px;
+  margin: 0 0 4px 0;
+  font-size: 13px;
   color: #666;
-  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Status Badge */
@@ -150,83 +177,167 @@
 
 .app.dark-mode .registered-members-page .page-header {
   background: linear-gradient(135deg, #1a1a2e 0%, #252542 100%);
-  box-shadow: 0 4px 30px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
 }
 
-.app.dark-mode .registered-members-page .members-count p {
-  color: rgba(255, 255, 255, 0.6);
+.app.dark-mode .registered-members-page .back-btn {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app.dark-mode .registered-members-page .back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.app.dark-mode .registered-members-page .stats-card {
+  background: linear-gradient(135deg, #252542 0%, #2d2d5a 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .app.dark-mode .registered-members-page .member-item {
   background: #1e1e3f;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .app.dark-mode .registered-members-page .member-item:hover {
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
 }
 
 .app.dark-mode .registered-members-page .member-info h3 {
-  color: #ffffff;
+  color: white;
 }
 
 .app.dark-mode .registered-members-page .member-info p {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
 }
 
-/* ==================== RESPONSIVE DESIGN ==================== */
+/* Empty State */
+.registered-members-page .empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+}
 
-/* Desktop - Max width 500px, centered */
+.registered-members-page .empty-state p {
+  font-size: 16px;
+}
+
+.app.dark-mode .registered-members-page .empty-state {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
 @media (min-width: 768px) {
   .registered-members-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    position: relative;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
   }
 
   .registered-members-page .page-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 40px;
+    border-radius: 0;
+    max-width: 100%;
   }
 
   .registered-members-page .page-header h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
-  .registered-members-page .members-count,
+  .registered-members-page .stats-card {
+    padding: 32px;
+    border-radius: 24px;
+    max-width: 800px;
+    margin: 100px auto 30px;
+  }
+
+  .registered-members-page .stat-number {
+    font-size: 56px;
+  }
+
+  .registered-members-page .stat-label {
+    font-size: 16px;
+  }
+
   .registered-members-page .members-list {
-    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .registered-members-page .member-item {
-    padding: 20px;
+    padding: 22px;
+  }
+
+  .registered-members-page .member-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
   }
 
   .registered-members-page .member-info h3 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .registered-members-page .member-info p {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
-/* Large Desktop */
 @media (min-width: 1200px) {
   .registered-members-page {
-    max-width: 500px;
-    padding: 40px;
+    position: relative;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 60px;
     padding-bottom: 140px;
+  }
+
+  .registered-members-page .page-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 50px;
+    max-width: 100%;
+  }
+
+  .registered-members-page .stats-card {
+    max-width: 900px;
+    margin: 120px auto 40px;
+    padding: 40px;
+  }
+
+  .registered-members-page .stat-number {
+    font-size: 64px;
+  }
+
+  .registered-members-page .members-list {
+    max-width: 900px;
+  }
+
+  .registered-members-page .member-item {
+    padding: 24px;
+  }
+
+  .registered-members-page .member-info h3 {
+    font-size: 20px;
   }
 }
 
-/* Mobile Small */
 @media (max-width: 480px) {
   .registered-members-page {
     padding: 16px;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
   }
 
   .registered-members-page .page-header {
@@ -238,20 +349,28 @@
     font-size: 20px;
   }
 
-  .registered-members-page .back-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+  .registered-members-page .stats-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .registered-members-page .stat-number {
+    font-size: 40px;
+  }
+
+  .registered-members-page .stat-label {
+    font-size: 13px;
   }
 
   .registered-members-page .member-item {
     padding: 14px;
+    gap: 12px;
   }
 
   .registered-members-page .member-avatar {
-    width: 48px;
-    height: 48px;
-    font-size: 14px;
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
   }
 
   .registered-members-page .member-info h3 {
@@ -259,6 +378,6 @@
   }
 
   .registered-members-page .member-info p {
-    font-size: 13px;
+    font-size: 12px;
   }
 }

@@ -8,9 +8,11 @@ function Dashboard({
   onNavigateToCreateEvent,
   onNavigateToRegistrations,
   profileData,
-  events = []
+  events = [],
+  isMenuOpen,
+  onToggleMenu
 }) {
-  const { isDarkMode } = useContext(DarkModeContext);
+  const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
   const userName = profileData?.name?.split(' ')[0] || "Admin";
 
   // Calculate stats from actual events data
@@ -25,16 +27,42 @@ function Dashboard({
     <div className={`dashboard-page ${isDarkMode ? "dark-mode" : ""}`}>
       {/* Header */}
       <div className="dashboard-header">
-        <div className="header-content">
-          <h1>Welcome {userName}</h1>
-          <p>Here's your event overview</p>
+        <div className="header-left">
+          <button className={`menu-toggle-btn-inline ${isMenuOpen ? 'active' : ''}`} onClick={onToggleMenu}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+          </button>
+          <div className="header-content">
+            <h1>Welcome {userName}</h1>
+            <p>Here's your event overview</p>
+          </div>
         </div>
-        <button className="notification-btn" onClick={onNavigateToNotifications}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
-          </svg>
-          <span className="notification-badge">3</span>
-        </button>
+        
+        <div className="header-actions-right">
+          <button className="notification-btn" onClick={onNavigateToNotifications}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+            </svg>
+          </button>
+            
+          {/* Dark/Light Mode Toggle */}
+          <button 
+            className={`theme-toggle-btn ${isDarkMode ? 'dark' : 'light'}`} 
+            onClick={toggleDarkMode}
+            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            {isDarkMode ? (
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Stats Cards */}

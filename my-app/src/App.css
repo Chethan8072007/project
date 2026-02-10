@@ -15,6 +15,8 @@ body {
 .app {
   min-height: 100vh;
   transition: all 0.4s ease;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ==================== PAGE CONTAINER ==================== */
@@ -22,34 +24,41 @@ body {
 .page-container {
   min-height: 100vh;
   width: 100%;
+  max-width: 480px;
   margin: 0 auto;
   padding: 20px;
   padding-bottom: 100px;
   background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
 }
 
-/* Desktop - Max width for consistent page size */
+/* Desktop - Full viewport width and height */
 @media (min-width: 768px) {
   .page-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
-    padding-bottom: 120px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
+    padding-bottom: 100px;
   }
 }
 
 /* Large Desktop */
 @media (min-width: 1200px) {
   .page-container {
-    max-width: 500px;
-    padding: 40px;
-    padding-bottom: 140px;
+    max-width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 60px;
+    padding-bottom: 120px;
   }
 }
 
-/* Mobile Small */
+/* Mobile Small - Fixed size for phone */
 @media (max-width: 480px) {
   .page-container {
+    max-width: 480px;
+    width: 100%;
     padding: 16px;
     padding-bottom: 80px;
   }
@@ -350,13 +359,18 @@ body {
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
-/* Dark Mode Popup */
-.app.dark-mode .popup {
-  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+/* Dark Mode Popup Backdrop */
+.app.dark-mode .popup-backdrop {
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.app.dark-mode .popup p {
+/* Dark Mode Popup */
+.app.dark-mode .popup {
+  background: #1e1e3f;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.app.dark-mode .popup-message {
   color: #ffffff;
 }
 

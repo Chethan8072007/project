@@ -23,6 +23,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("dashboard");
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [profileData, setProfileData] = useState({
     name: "Dr. Sarah Johnson",
     email: "sarahjohnson@gmail.com",
@@ -48,6 +49,36 @@ function App() {
       status: "Approved",
     },
   ]);
+
+  // Shared registration state
+  const [newRegistrations, setNewRegistrations] = useState([
+    { id: 1, name: "John Smith", email: "john@example.com", avatar: "JS", date: "10:30 AM", event: "Tech Conference 2024" },
+    { id: 2, name: "Emma Wilson", email: "emma@example.com", avatar: "EW", date: "09:15 AM", event: "Music Festival" },
+    { id: 3, name: "Michael Brown", email: "michael@example.com", avatar: "MB", date: "Yesterday", event: "Art Exhibition" },
+  ]);
+  const [registeredMembers, setRegisteredMembers] = useState([
+    { id: 4, name: "Sarah Davis", email: "sarah@example.com", avatar: "SD", status: "Approved" },
+    { id: 5, name: "James Wilson", email: "james@example.com", avatar: "JW", status: "Approved" },
+  ]);
+  const [rejectedRegistrations, setRejectedRegistrations] = useState([
+    { id: 6, name: "David Lee", email: "david@example.com", avatar: "DL", status: "Rejected" },
+  ]);
+
+  const handleApproveRegistration = (id) => {
+    const reg = newRegistrations.find(r => r.id === id);
+    if (reg) {
+      setNewRegistrations(newRegistrations.filter(r => r.id !== id));
+      setRegisteredMembers([...registeredMembers, { ...reg, status: "Approved" }]);
+    }
+  };
+
+  const handleRejectRegistration = (id) => {
+    const reg = newRegistrations.find(r => r.id === id);
+    if (reg) {
+      setNewRegistrations(newRegistrations.filter(r => r.id !== id));
+      setRejectedRegistrations([...rejectedRegistrations, { ...reg, status: "Rejected" }]);
+    }
+  };
 
   const navigateTo = (pageId) => {
     setCurrentPage(pageId);
@@ -160,8 +191,16 @@ function App() {
     setCurrentPage("viewRegistrations");
   };
 
+  const handleDeleteEvent = (eventId) => {
+    setEvents(events.filter(event => event.id !== eventId));
+  };
+
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   // Pages that should show bottom navigation
@@ -178,6 +217,8 @@ function App() {
             onNavigateToRegistrations={navigateToRegistrations}
             profileData={profileData}
             events={events}
+            isMenuOpen={isMenuOpen}
+            onToggleMenu={toggleMenu}
           />
         )}
         {currentPage === "notifications" && (
@@ -186,6 +227,9 @@ function App() {
             onNavigateToNewRegistration={navigateToNewRegistrationMembers}
             onNavigateToRegisteredMembers={navigateToRegisteredMembers}
             onNavigateToRejectedRegistrations={navigateToRejectedRegistrations}
+            newRegistrationsCount={newRegistrations.length}
+            registeredMembersCount={registeredMembers.length}
+            rejectedRegistrationsCount={rejectedRegistrations.length}
           />
         )}
         {currentPage === "myEvents" && (
@@ -202,6 +246,8 @@ function App() {
             events={events}
             onEditEvent={navigateToEditEvent}
             onViewRegistration={navigateToViewRegistrations}
+            onDeleteEvent={handleDeleteEvent}
+            onHome={navigateToMyEvents}
           />
         )}
         {currentPage === "createEvent" && (
@@ -226,16 +272,32 @@ function App() {
           />
         )}
         {currentPage === "registrations" && (
-          <Registrations onBack={navigateToDashboard} />
+          <Registrations 
+            onBack={navigateToDashboard}
+            newRegistrations={newRegistrations}
+            registeredMembers={registeredMembers}
+            onApprove={handleApproveRegistration}
+            onReject={handleRejectRegistration}
+          />
         )}
         {currentPage === "newRegistrationMembers" && (
-          <NewRegistrationMembers onBack={navigateToNotifications} />
+          <NewRegistrationMembers 
+            onBack={navigateToNotifications}
+            registrations={newRegistrations}
+            onApprove={handleApproveRegistration}
+          />
         )}
         {currentPage === "registeredMembers" && (
-          <RegisteredMembers onBack={navigateToNotifications} />
+          <RegisteredMembers 
+            onBack={navigateToNotifications}
+            members={registeredMembers}
+          />
         )}
         {currentPage === "rejectedRegistrations" && (
-          <RejectedRegistrations onBack={navigateToNotifications} />
+          <RejectedRegistrations 
+            onBack={navigateToNotifications}
+            rejected={rejectedRegistrations}
+          />
         )}
         {currentPage === "profile" && (
           <Profile
@@ -270,6 +332,9 @@ function App() {
             currentPage={currentPage}
             onNavigate={navigateTo}
             onProfileClick={navigateToProfile}
+            isMenuOpen={isMenuOpen}
+            onToggleMenu={toggleMenu}
+            onLogout={navigateToLogout}
           />
         )}
       </div>

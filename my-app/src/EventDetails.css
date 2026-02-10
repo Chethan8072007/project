@@ -63,6 +63,21 @@
   overflow: hidden;
 }
 
+/* Event Image Thumbnail inside card */
+.event-info-card .event-image-container {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-info-card .event-image-thumbnail {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
 .event-icon {
   width: 56px;
   height: 56px;
@@ -144,13 +159,20 @@
 /* Action Buttons */
 .event-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .action-btn {
   flex: 1;
-  padding: 14px 16px;
+  min-width: 120px;
+  padding: 16px 20px;
   border-radius: 14px;
   cursor: pointer;
   font-size: 14px;
@@ -159,7 +181,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .action-btn.primary {
@@ -191,19 +213,16 @@
   transform: scale(0.98);
 }
 
-/* Event Image Thumbnail */
-.event-image-container {
-  margin-bottom: 24px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+.action-btn.danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.35);
 }
 
-.event-image-thumbnail {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
+.action-btn.danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
 }
 
 /* Registrations Section */
@@ -318,32 +337,48 @@
   transform: scale(1.1);
 }
 
-/* Responsive Design */
+/* Responsive Design - Full viewport on desktop */
 @media (min-width: 768px) {
-  .uploaded-image-bg {
-    border-radius: 24px;
-  }
-
   .event-details-page {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
+    max-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
     padding-bottom: 120px;
+    position: relative;
   }
 
   .event-details-header {
-    margin: -30px -30px 28px -30px;
-    padding: 28px 30px;
-    border-radius: 0 0 36px 36px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 40px;
+    border-radius: 0;
+    max-width: none;
+    width: 100%;
   }
 
   .event-details-header h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .event-info-card {
     padding: 28px;
     border-radius: 24px;
+    max-width: 800px;
+    margin: 100px auto 0;
+  }
+
+  .event-info-card .event-image-container {
+    margin-bottom: 20px;
+    border-radius: 16px;
+  }
+
+  .event-info-card .event-image-thumbnail {
+    height: 200px;
   }
 
   .event-icon {
@@ -353,63 +388,95 @@
   }
 
   .event-title {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .event-date,
   .event-time {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .action-btn {
-    padding: 16px 20px;
+    padding: 18px 24px;
     font-size: 15px;
+    min-width: 150px;
   }
 
-  .event-image-thumbnail {
-    height: 250px;
+  .event-actions {
+    padding: 24px;
     border-radius: 20px;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .registrations-section {
     padding: 24px;
     border-radius: 24px;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .registrations-header h2 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .registration-card {
-    padding: 18px;
+    padding: 20px;
   }
 
   .reg-avatar {
-    width: 52px;
-    height: 52px;
-    font-size: 18px;
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
   }
 }
 
 @media (min-width: 1200px) {
   .event-details-page {
-    max-width: 500px;
-    padding: 40px;
+    max-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px;
     padding-bottom: 140px;
   }
 
-  .event-image-thumbnail {
-    height: 280px;
-    border-radius: 24px;
+  .event-details-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 50px;
+    border-radius: 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .event-info-card {
+    max-width: 900px;
+    padding: 32px;
+  }
+
+  .event-info-card .event-image-thumbnail {
+    height: 250px;
+  }
+
+  .event-actions {
+    max-width: 900px;
+  }
+
+  .registrations-section {
+    max-width: 900px;
+    padding: 28px;
   }
 }
 
+/* Mobile Small - Full width */
 @media (max-width: 480px) {
-  .uploaded-image-bg {
-    border-radius: 18px;
-  }
-
   .event-details-page {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
     padding: 16px;
     padding-bottom: 80px;
   }
@@ -417,6 +484,7 @@
   .event-details-header {
     padding: 20px 16px;
     margin: -16px -16px 20px -16px;
+    border-radius: 0 0 28px 28px;
   }
 
   .event-details-header h1 {
@@ -428,10 +496,19 @@
     border-radius: 18px;
   }
 
+  .event-info-card .event-image-container {
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+
+  .event-info-card .event-image-thumbnail {
+    height: 180px;
+  }
+
   .event-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
   }
 
   .event-title {
@@ -444,13 +521,15 @@
   }
 
   .action-btn {
-    padding: 12px 14px;
+    padding: 14px 16px;
     font-size: 13px;
+    min-width: 100px;
   }
 
-  .event-image-thumbnail {
-    height: 180px;
-    border-radius: 14px;
+  .event-actions {
+    padding: 16px;
+    border-radius: 16px;
+    gap: 10px;
   }
 
   .registrations-section {
@@ -458,24 +537,18 @@
     border-radius: 18px;
   }
 
+  .registrations-header h2 {
+    font-size: 16px;
+  }
+
   .registration-card {
     padding: 14px;
-    gap: 12px;
   }
 
   .reg-avatar {
-    width: 44px;
-    height: 44px;
-    font-size: 15px;
-  }
-
-  .reg-info h3 {
-    font-size: 14px;
-  }
-
-  .view-btn {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
   }
 }
 
@@ -544,4 +617,91 @@ body.dark-mode .view-btn {
 body.dark-mode .view-btn:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+}
+
+/* Delete Popup */
+.delete-popup {
+  max-width: 360px;
+  text-align: center;
+}
+
+.delete-popup h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.delete-popup p {
+  margin: 0 0 24px 0;
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.popup-icon.danger {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+}
+
+.popup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.popup-btn {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.popup-btn.cancel {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.popup-btn.cancel:hover {
+  background: #e0e0e0;
+}
+
+.popup-btn.confirm {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+}
+
+.popup-btn.confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.app.dark-mode .delete-popup h3 {
+  color: white;
+}
+
+.app.dark-mode .delete-popup p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.app.dark-mode .popup-btn.cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.app.dark-mode .popup-btn.cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
 }

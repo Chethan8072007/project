@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./EventDetails.css";
 
-function EventDetails({ onBack, eventId, events, onEditEvent, onViewRegistration }) {
+function EventDetails({ onBack, eventId, events, onEditEvent, onViewRegistration, onDeleteEvent, onHome }) {
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+
   const handleEditEvent = () => {
     if (onEditEvent) {
       onEditEvent();
@@ -14,25 +16,22 @@ function EventDetails({ onBack, eventId, events, onEditEvent, onViewRegistration
     }
   };
 
+  const confirmDelete = () => {
+    if (onDeleteEvent) {
+      onDeleteEvent(eventId);
+    }
+    if (onHome) {
+      onHome();
+    }
+    setShowDeletePopup(false);
+  };
+
+  const cancelDelete = () => {
+    setShowDeletePopup(false);
+  };
+
   // Find the event based on eventId
   const event = events.find((e) => e.id === eventId);
-
-  const registrations = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "johndoe123@gmail.com",
-      phone: "+91 98765 43210",
-      avatar: "JD",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "janesmith123@gmail.com",
-      phone: "+91 98765 43211",
-      avatar: "JS",
-    },
-  ];
 
   // Use event data or fallback to defaults
   const eventTitle = event ? event.title : "AI & Machine Learning Workshop";
@@ -55,6 +54,13 @@ function EventDetails({ onBack, eventId, events, onEditEvent, onViewRegistration
 
       {/* Event Info Card */}
       <div className="event-info-card">
+        {/* Uploaded Image Thumbnail inside card */}
+        {isUploadedImage && (
+          <div className="event-image-container">
+            <img src={eventImage} alt="Event" className="event-image-thumbnail" />
+          </div>
+        )}
+        
         {/* Event Icon */}
         <div className="event-icon">📅</div>
         <div className="event-details-info">
@@ -77,13 +83,6 @@ function EventDetails({ onBack, eventId, events, onEditEvent, onViewRegistration
         </span>
       </div>
 
-      {/* Uploaded Image Thumbnail */}
-      {isUploadedImage && (
-        <div className="event-image-container">
-          <img src={eventImage} alt="Event" className="event-image-thumbnail" />
-        </div>
-      )}
-
       {/* Action Buttons */}
       <div className="event-actions">
         <button className="action-btn primary" onClick={handleEditEvent}>
@@ -98,31 +97,33 @@ function EventDetails({ onBack, eventId, events, onEditEvent, onViewRegistration
           </svg>
           View Registration
         </button>
+        <button className="action-btn danger" onClick={() => setShowDeletePopup(true)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+          </svg>
+          Delete Event
+        </button>
       </div>
 
-      {/* Registrations Section */}
-      <div className="registrations-section">
-        <div className="registrations-header">
-          <h2>Registrations</h2>
-          <span className="total-count">({registrations.length})</span>
-        </div>
-
-        {registrations.map((reg) => (
-          <div key={reg.id} className="registration-card">
-            <div className="reg-avatar">{reg.avatar}</div>
-            <div className="reg-info">
-              <h3>{reg.name}</h3>
-              <p className="reg-email">{reg.email}</p>
-              <p className="reg-phone">{reg.phone}</p>
-            </div>
-            <button className="view-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+      {/* Delete Confirmation Popup */}
+      {showDeletePopup && (
+        <>
+          <div className="popup-backdrop" onClick={cancelDelete}></div>
+          <div className="popup delete-popup">
+            <div className="popup-icon danger">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
               </svg>
-            </button>
+            </div>
+            <h3>Delete Event?</h3>
+            <p>Are you sure you want to delete this event? This action cannot be undone.</p>
+            <div className="popup-actions">
+              <button className="popup-btn cancel" onClick={cancelDelete}>No, Cancel</button>
+              <button className="popup-btn confirm" onClick={confirmDelete}>Yes, Delete</button>
+            </div>
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 }

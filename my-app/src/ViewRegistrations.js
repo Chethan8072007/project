@@ -4,7 +4,6 @@ import "./ViewRegistrations.css";
 function ViewRegistrations({ onBack, eventId, events }) {
   // Find the event based on eventId
   const event = events.find((e) => e.id === eventId);
-  const eventName = event ? event.title : "Event";
 
   const [registrations] = useState([
     { id: 1, name: "John Doe", email: "johndoe123@gmail.com", phone: "+91 98765 43210", avatar: "JD", date: "Feb 10, 2025" },
@@ -20,7 +19,7 @@ function ViewRegistrations({ onBack, eventId, events }) {
         <button className="back-btn" onClick={onBack}>
           ←
         </button>
-        <h1>{eventName}</h1>
+        <h1>Event Registrations</h1>
       </div>
 
       {/* Stats Card */}
